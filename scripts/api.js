@@ -12,8 +12,7 @@ async function getDataFnc (resource) {
     const URL = await getResourcesUrl(resource);
     const response = await fetch(URL);
     const specificData = await response.json();
-    // just for testing
-    //console.log(specificData);
+    
     return specificData
 }
 
