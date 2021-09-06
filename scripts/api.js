@@ -1,19 +1,19 @@
-async function getResourcesUrl (resource) {
-    const URL = "https://rickandmortyapi.com/api";
-    const response = await fetch(URL);
-    const allDataUrl = await response.json();
-    const specificDataUrl = allDataUrl[resource];
-    
-    return specificDataUrl;
+async function getListOfEpisodes(page) {
+  const url = `https://rickandmortyapi.com/api/episode?page=${page}`;
+  const json = await getUrl(url);
+  return json.results;
 }
 
-
-async function getDataFnc (resource) {
-    const URL = await getResourcesUrl(resource);
-    const response = await fetch(URL);
-    const specificData = await response.json();
-    
-    return specificData
+async function getEpisode(episode) {
+  const url = `https://rickandmortyapi.com/api/episode/${episode}`;
+  return getUrl(url);
 }
 
-export { getResourcesUrl, getDataFnc };
+async function getUrl(url) {
+  const res = await fetch(url);
+  const json = await res.json();
+
+  return json;
+}
+
+export { getListOfEpisodes, getEpisode, getUrl };
